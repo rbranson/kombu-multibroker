@@ -16,7 +16,7 @@ Usage
     import kombu
     import kombu_multibroker
 
-    BrokerConnection("multiamqp://broker1,broker2,broker3/")
+    kombu.BrokerConnection("multiamqp://broker1,broker2,broker3/")
 
 License
 =======
