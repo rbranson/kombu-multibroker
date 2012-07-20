@@ -1,0 +1,1 @@
+import kombu_multibroker.transport
