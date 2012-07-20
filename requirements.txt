@@ -1,2 +1,0 @@
-kombu>=2.2.6
-librabbitmq>=0.9.9

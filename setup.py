@@ -3,13 +3,6 @@
 import os
 from setuptools import setup
 
-def strip_comments(l):
-    return l.split("#", 1)[0].strip()
-
-def reqs(f):
-    return filter(None, [strip_comments(l) for l in open(
-        os.path.join(os.getcwd(), f)).readlines()])
-
 setup(
     name = "kombu-multibroker",
     version = "0.0.1",
@@ -19,9 +12,9 @@ setup(
     license = "BSD",
     keywords = "kombu broker amqp",
     url = "http://github.com/rbranson/kombu-multibroker",
-    packages = ["kombu_multibroker"],
+    packages = ["kombu_multibroker", "kombu_multibroker.transport"],
     long_description = "Support for multiple brokers in Kombu",
-    install_requires = reqs("requirements.txt"),
+    install_requires = [ "kombu>=2.2.6", "librabbitmq>=0.9.9" ],
     classifiers = [
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: BSD License",
@@ -39,6 +32,6 @@ setup(
         "Topic :: Communications",
         "Topic :: System :: Distributed Computing",
         "Topic :: System :: Networking",
-        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Software Development :: Libraries :: Python Modules"
     ]
 )
