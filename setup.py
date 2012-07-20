@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name = "kombu-multibroker",
-    version = "0.0.2",
+    version = "0.0.3",
     author = "Rick Branson",
     author_email = "rick@diodeware.com",
     description = ("Support for multiple brokers in Kombu"),
