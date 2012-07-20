@@ -44,7 +44,6 @@ class Transport(AMQPTransport):
                 setattr(conninfo, name, default_value)
 
         # Supports multiple hosts separated by commas
-        print conninfo.host
         hosts = string.split(conninfo.host, ",")
         random.shuffle(hosts)
 
