@@ -3,7 +3,7 @@ import string
 import time
 
 from kombu.transport import base, TRANSPORT_ALIASES
-from kombu.transport.librabbitmq import Transport as AMQPTransport, ConnectionError
+from kombu.transport.pyamqp import Transport as AMQPTransport
 from kombu.log import get_logger
 
 logger = get_logger("kombu.transport.multiamqp")
@@ -65,9 +65,9 @@ class Transport(AMQPTransport):
                                        insist = conninfo.insist,
                                        ssl = conninfo.ssl,
                                        connect_timeout = conninfo.connect_timeout)
-            except ConnectionError, e:
+            except AMQPTransport.connection_errors, e:
                 self._mark_host_down(which_host)
-                logger.warn("ConnectionError when connecting to broker: %s" % e)
+                logger.warn("Connection error when connecting to broker: %s" % e)
                 continue
 
             conn.client = self.client

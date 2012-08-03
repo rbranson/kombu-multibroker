@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name = "kombu-multibroker",
-    version = "0.0.3",
+    version = "0.0.4",
     author = "Rick Branson",
     author_email = "rick@diodeware.com",
     description = ("Support for multiple brokers in Kombu"),
@@ -14,7 +14,7 @@ setup(
     url = "http://github.com/rbranson/kombu-multibroker",
     packages = ["kombu_multibroker", "kombu_multibroker.transport"],
     long_description = "Support for multiple brokers in Kombu",
-    install_requires = [ "kombu>=2.2.6", "librabbitmq>=0.9.9" ],
+    install_requires = [ "kombu>=2.3.0", "amqp>=0.9.2" ],
     classifiers = [
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: BSD License",
