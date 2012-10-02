@@ -2,7 +2,7 @@
 kombu-multibroker
 =================
 
-A terrible hack that allows the "kombu" package to talk to multiple brokers, and (kinda) ignore ones that are down. It also sort of provides load balancing.
+A terrible hack that allows the "kombu" package to talk to multiple brokers, and (kinda) ignore ones that are down. It also sort of provides load balancing. In addition, I've hacked in the use of publisher confirms for every message sent, because it's ridiculous to not do this for task queue use cases.
 
 When specifying the broker, use the "multiamqp" transport and specify the list of brokers as the hostname, delimited by commas.
 
