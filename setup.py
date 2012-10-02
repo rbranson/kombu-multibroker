@@ -5,16 +5,16 @@ from setuptools import setup
 
 setup(
     name = "kombu-multibroker",
-    version = "0.0.4",
+    version = "0.0.5",
     author = "Rick Branson",
     author_email = "rick@diodeware.com",
-    description = ("Support for multiple brokers in Kombu"),
+    description = ("Support for multiple brokers and publisher confirms in Kombu"),
     license = "BSD",
     keywords = "kombu broker amqp",
     url = "http://github.com/rbranson/kombu-multibroker",
     packages = ["kombu_multibroker", "kombu_multibroker.transport"],
     long_description = "Support for multiple brokers in Kombu",
-    install_requires = [ "kombu>=2.3.0", "amqp>=0.9.2" ],
+    install_requires = [ "kombu>=2.4.7", "amqp>=0.9.2" ],
     classifiers = [
         "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: BSD License",

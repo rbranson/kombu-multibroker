@@ -3,7 +3,9 @@ import string
 import time
 
 from kombu.transport import base, TRANSPORT_ALIASES
-from kombu.transport.pyamqp import Transport as AMQPTransport
+from kombu.transport.pyamqp import Transport as AMQPTransport, \
+                                   Connection as AMQPConnection, \
+                                   Channel as AMQPChannel
 from kombu.log import get_logger
 
 logger = get_logger("kombu.transport.multiamqp")
@@ -13,11 +15,30 @@ TRANSPORT_ALIASES["multiamqp"] = "kombu_multibroker.transport.multiamqp.Transpor
 class NoHostsError(Exception):
     pass
 
+class Channel(AMQPChannel):
+    handlers = {"basic_ack": []}
+
+    def basic_publish(self, *args, **kwargs):
+        super(Channel, self).basic_publish(*args, **kwargs)
+        return self.wait(allowed_methods = [
+            (60, 80), # Channel.basic_ack
+        ])
+
+class Connection(AMQPConnection):
+    Channel = Channel
+
 class Transport(AMQPTransport):
+    Connection = Connection
+
     DOWN_HOST_RETRY_TIME = 30
 
     driver_name = "multiamqp"
     _down_hosts = {}
+
+    def create_channel(self, *args, **kwargs):
+        channel = super(Transport, self).create_channel(*args, **kwargs)
+        channel.confirm_select()
+        return channel
 
     def _mark_host_down(self, host):
         self._down_hosts[host] = time.time() + self.DOWN_HOST_RETRY_TIME
