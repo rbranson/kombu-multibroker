@@ -6,7 +6,7 @@ A terrible hack that allows the "kombu" package to talk to multiple brokers, and
 
 When specifying the broker, use the "multiamqp" transport and specify the list of brokers as the hostname, delimited by commas.
 
-It only supports librabbitmq.
+It only supports py-amqp.
 
 Again, this is a terrible hack and probably *NOT* fit for general consumption at this point.
 
